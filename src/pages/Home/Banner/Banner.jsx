@@ -17,7 +17,7 @@ const Banner = () => {
             I have a strong passion for technology, especially in web development and innovative tools that enhance user experience and continue learning.
           </p>
           <a
-            href="https://drive.google.com/file/d/1maGcQX6Mp7pDDTgClSzx3aoBsZ10g_aB/view?usp=sharing"
+            href="https://drive.google.com/file/d/1QwBDxYmxG-LZRr8oy7w6khI58Wtust_K/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="btn bg-transparent border-2 border-sky-500 text-xl mt-1 text-white font-bold hover:bg-indigo-400"
