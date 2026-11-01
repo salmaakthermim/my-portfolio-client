@@ -1,95 +1,93 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Novatrix } from "uvcanvas";
+
+const educations = [
+  {
+    degree: 'Bachelor of Business Administration (Management)',
+    institution: 'Moulvibazar Government College, Moulvibazar',
+    passed: '2024',
+    result: 'CGPA: 3.02',
+    logo: 'https://i.ibb.co.com/4wBdzmKd/download-3.jpg',
+    icon: '🎓',
+  },
+  {
+    degree: 'Higher Secondary Certificate (HSC)',
+    institution: "Moulvibazar Govt. Women's College, Moulvibazar",
+    passed: '2018',
+    result: 'GPA: 4.08',
+    logo: 'https://i.ibb.co.com/wZckNDzx/download-2.jpg',
+    icon: '📚',
+  },
+  {
+    degree: 'Secondary School Certificate (SSC)',
+    institution: 'Hafiza Khatun Girls High School, Moulvibazar',
+    passed: '2016',
+    result: 'GPA: 4.39',
+    logo: 'https://i.ibb.co.com/rKHtMH6B/59.jpg',
+    icon: '🏫',
+  },
+];
 
 const Education = () => {
-    return (
-        <div className="p-6 my-10 max-w-4xl mx-auto shadow-lg rounded-lg text-black relative" id="education">
-            <Novatrix style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', zIndex: -1 }} />
+  return (
+    <section className="py-24 px-6 relative overflow-hidden" id="education">
+      {/* bg glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-sky-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto">
+        {/* Title */}
+        <div className="text-center mb-16">
+          <p className="text-sky-400 uppercase tracking-widest text-sm font-semibold mb-2">My Journey</p>
+          <h2 className="section-title">Education</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-sky-500 to-purple-600 rounded mx-auto mt-3" />
+        </div>
+
+        {/* Timeline */}
+        <div className="relative pl-10 timeline-line space-y-8">
+          {educations.map((edu, index) => (
             <motion.div
-                            className="absolute inset-0 -z-10"
-                            animate={{
-                                boxShadow: [
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                    '0 0 20px #87CEEB, 0 0 30px #87CEEB, 0 0 40px #87CEEB',
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                ],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                repeatType: 'reverse',
-                            }}
-                        />
-        {/* <h1 className="text-3xl font-bold mb-6 text-sky-500">Educations</h1> */}
+              key={index}
+              className="relative"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
+            >
+              {/* Timeline dot */}
+              <div className="absolute -left-[2.85rem] top-5 w-5 h-5 rounded-full bg-gradient-to-br from-sky-500 to-purple-600 border-4 border-[#050d1a] z-10 flex items-center justify-center">
+                <span className="text-[8px]">{edu.icon}</span>
+              </div>
 
-        <div className="mb-8 relative p-4 bg-sky-300">
-        <motion.div
-                            className="absolute inset-0 -z-10"
-                            animate={{
-                                boxShadow: [
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                    '0 0 20px #87CEEB, 0 0 30px #87CEEB, 0 0 40px #87CEEB',
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                ],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                repeatType: 'reverse',
-                            }}
-                        />
-            {/* <h2 className="text-2xl font-semibold mb-2">Bachelor of Business Administration in Management</h2> */}
-            <p className='flex gap-1 items-center'><img src="https://i.ibb.co.com/4wBdzmKd/download-3.jpg" className='w-12 h-12 rounded-full' alt="Moulvibazar Government College" /><strong>Institution:</strong> Moulvibazar Government College, Moulvibazar</p>
-            <p><strong>Passed:</strong> 2024</p>
-            <p><strong>CGPA:</strong> 3.02</p>
+              <div className="glow-card p-6 hover:border-sky-400/40">
+                <div className="flex items-start gap-4">
+                  {/* Logo */}
+                  <img
+                    src={edu.logo}
+                    alt={edu.institution}
+                    className="w-14 h-14 rounded-xl object-cover border border-white/10 flex-shrink-0"
+                  />
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-start justify-between gap-2">
+                      <div>
+                        <h3 className="text-white font-bold text-lg leading-tight">{edu.degree}</h3>
+                        <p className="text-sky-400 text-sm mt-1">{edu.institution}</p>
+                      </div>
+                      <div className="text-right flex-shrink-0">
+                        <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold">
+                          Passed: {edu.passed}
+                        </span>
+                        <p className="text-purple-400 text-sm font-bold mt-2">{edu.result}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-
-        <div className="mb-8 relative p-4 bg-sky-300">
-        <motion.div
-                            className="absolute inset-0 -z-10"
-                            animate={{
-                                boxShadow: [
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                    '0 0 20px #87CEEB, 0 0 30px #87CEEB, 0 0 40px #87CEEB',
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                ],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                repeatType: 'reverse',
-                            }}
-                        />
-            <h2 className="text-2xl font-semibold mb-2">Higher Secondary Certificate (HSC)</h2>
-            <p className='flex gap-1 items-center'><img src="https://i.ibb.co.com/wZckNDzx/download-2.jpg" className='w-12 h-12 rounded-full' alt="Moulvibazar Govt. Women's College" /><strong>Institution:</strong> Moulvibazar Govt. Women's College, Moulvibazar</p>
-            <p><strong>Passed:</strong> 2018</p>
-            <p><strong>GPA:</strong> 4.08</p>
-        </div>
-
-        <div className="mb-8 relative p-4 bg-sky-300">
-        <motion.div
-                            className="absolute inset-0 -z-10"
-                            animate={{
-                                boxShadow: [
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                    '0 0 20px #87CEEB, 0 0 30px #87CEEB, 0 0 40px #87CEEB',
-                                    '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                                ],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                repeatType: 'reverse',
-                            }}
-                        />
-            <h2 className="text-2xl font-semibold mb-2">Secondary School Certificate (SSC)</h2>
-            <p className='flex gap-1 items-center'><img src="https://i.ibb.co.com/rKHtMH6B/59.jpg" className='w-12 h-12 rounded-full' alt="Hafiza Khatun Girls High School" /><strong>Institution:</strong> Hafiza Khatun Girls High School, Moulvibazar</p>
-            <p><strong>Passed:</strong> 2016</p>
-            <p><strong>GPA:</strong> 4.39</p>
-        </div>
-    </div>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default Education;

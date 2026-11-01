@@ -1,103 +1,175 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Novatrix } from "uvcanvas";
 import { motion } from 'framer-motion';
+import { FaReact, FaNodeJs, FaGithub, FaDatabase } from 'react-icons/fa';
+import { SiTailwindcss, SiMongodb, SiFirebase } from 'react-icons/si';
+
+const techBadges = [
+  { icon: <FaReact />, label: 'React', color: '#61dafb' },
+  { icon: <FaNodeJs />, label: 'Node.js', color: '#68a063' },
+  { icon: <SiMongodb />, label: 'MongoDB', color: '#47a248' },
+  { icon: <SiTailwindcss />, label: 'Tailwind', color: '#38bdf8' },
+  { icon: <SiFirebase />, label: 'Firebase', color: '#ffca28' },
+  { icon: <FaGithub />, label: 'GitHub', color: '#ffffff' },
+];
 
 export default function Me() {
-    useEffect(() => {
-        AOS.init({ duration: 1000, once: true });
-    }, []);
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
 
-    const handleDownloadCV = () => {
-        // Logic to handle CV download
-        window.open('/path/to/your/cv.pdf'); // adjust with the actual CV link
-    };
+  return (
+    <section className="py-24 px-6 relative overflow-hidden" id="about-me">
+      {/* bg glow */}
+      <div className="absolute -top-20 -left-20 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-sky-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-    return (
-        <div>
-           
-            <section className="   py-16 px-6 md:px-12">
-                 {/* 🔵 Novatrix Animated Background */}
-            <Novatrix
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    zIndex: -2
-                }}
-            />
-
-            {/* 🔵 Glowing Animation Layer */}
-            <motion.div
-                className="absolute inset-0 -z-10"
-                animate={{
-                    boxShadow: [
-                        '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                        '0 0 20px #87CEEB, 0 0 30px #87CEEB, 0 0 40px #87CEEB',
-                        '0 0 10px #87CEEB, 0 0 20px #87CEEB, 0 0 30px #87CEEB',
-                    ],
-                }}
-                transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                }}
-            />
-
-                <div className=" w-1/3 mx-auto">
-                    <h2 class="text-4xl md:text-5xl font-bold text-transparent ml-16 bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] aos-init aos-animate" data-aos="zoom-in-up" data-aos-duration="600">About Me</h2>
-                    <p
-                        className="text-center md:text-left text-gray-300 mt-2 flex items-center justify-center md:justify-start gap-2"
-                        data-aos="fade-up" data-aos-duration="130"
-                    >
-                        <span>✨</span>
-                        <span className=" px-3 py-1 rounded-lg text-sm">
-                            Transforming ideas into digital experiences
-                        </span>
-                        <span>✨</span>
-                    </p>
-                </div>
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    {/* Text Section */}
-                    <div data-aos="fade-right">
-
-
-                        <h1
-                            className="mt-6 text-3xl md:text-4xl font-bold text-center md:text-left text-white"
-                            data-aos="fade-up"
-                        >
-                            Hello, I'm <br />
-                            <span className=" text-purple-500">Salma Akther Mim</span>
-                        </h1>
-
-                        <p
-                            className="mt-4  text-lg leading-relaxed text-center md:text-left"
-                            data-aos="fade-up"
-                            data-aos-delay="200"
-                        >
-                            A Computer Network and Telecommunications student passionate about
-                            Front-End development. I specialize in crafting engaging digital
-                            experiences and consistently strive to deliver the best solutions
-                            in every project.
-                        </p>
-
-                    </div>
-
-                    {/* Image Section */}
-                    <div className="flex justify-center" data-aos="zoom-in">
-                        <div className="relative">
-                            <img
-                                src="https://avatars.githubusercontent.com/u/160014837?s=400&u=ae238005fd653d2f2ed44f20b50fa244a4614091&v=4"
-                                alt="Abdul Jabbar Al Nahid"
-                                className="w-60 h-60 md:w-72 md:h-72 rounded-full shadow-lg border-4 border-gray-700"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <div className="max-w-6xl mx-auto">
+        {/* Title */}
+        <div data-aos="fade-up" className="text-center mb-16">
+          <p className="text-sky-400 uppercase tracking-widest text-sm font-semibold mb-2">Who I Am</p>
+          <h2 className="section-title">About Me</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-sky-500 to-purple-600 rounded mx-auto mt-3" />
         </div>
-    );
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          {/* Image side */}
+          <motion.div
+            className="flex justify-center"
+            data-aos="fade-right"
+          >
+            <div className="relative">
+              {/* Spinning dashed outer ring */}
+              <motion.div
+                className="absolute rounded-2xl border-2 border-dashed border-sky-400/30 z-0"
+                style={{ inset: '-18px' }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+              />
+
+              {/* Counter-spin inner ring */}
+              <motion.div
+                className="absolute rounded-2xl border border-purple-500/30 z-0"
+                style={{ inset: '-8px' }}
+                animate={{ rotate: -360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              />
+
+              {/* Gradient animated border */}
+              <motion.div
+                className="absolute rounded-2xl z-0"
+                style={{ inset: '-3px', background: 'linear-gradient(135deg, #38bdf8, #a855f7, #38bdf8)', backgroundSize: '200% 200%' }}
+                animate={{ backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+              />
+
+              {/* Corner glow dots */}
+              {[
+                { top: '-8px', left: '-8px' },
+                { top: '-8px', right: '-8px' },
+                { bottom: '-8px', left: '-8px' },
+                { bottom: '-8px', right: '-8px' },
+              ].map((pos, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-3 h-3 rounded-full bg-sky-400 z-20"
+                  style={pos}
+                  animate={{ scale: [1, 1.8, 1], opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                />
+              ))}
+
+              {/* Glow pulse */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl z-0"
+                animate={{
+                  boxShadow: [
+                    '0 0 30px #38bdf850, 0 0 60px #a855f730',
+                    '0 0 60px #38bdf870, 0 0 90px #a855f750',
+                    '0 0 30px #38bdf850, 0 0 60px #a855f730',
+                  ],
+                }}
+                transition={{ duration: 2.5, repeat: Infinity }}
+              />
+
+              {/* Floating image */}
+              <motion.img
+                src="/Mim.png"
+                alt="Salma Akther Mim"
+                className="relative z-10 rounded-2xl object-cover object-top shadow-2xl"
+                style={{ width: '300px', height: '380px' }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              />
+
+              {/* Shimmer */}
+              <motion.div
+                className="absolute inset-0 z-10 rounded-2xl overflow-hidden pointer-events-none"
+                style={{ background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.07) 50%, transparent 70%)', backgroundSize: '200% 100%' }}
+                animate={{ backgroundPosition: ['-200% 0', '200% 0'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+              />
+
+              {/* Status badge */}
+              <motion.div
+                className="absolute -bottom-5 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-r from-sky-500 to-purple-600 rounded-full px-4 py-2 text-xs text-white font-bold flex items-center gap-2 shadow-lg whitespace-nowrap"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" />
+                Available for work
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Text side */}
+          <div data-aos="fade-left">
+            <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-purple-500">Salma Akther Mim</span>
+            </h3>
+            <p className="text-sky-400 font-semibold mb-4 text-sm tracking-wide uppercase">
+              Front-End Developer
+            </p>
+            <p className="text-gray-400 leading-relaxed mb-4">
+              I'm Salma Akther Mim, a passionate Front-End Developer with expertise in building
+              modern, responsive web applications using React, Tailwind CSS, and more.
+            </p>
+            <p className="text-gray-400 leading-relaxed mb-6">
+              I love turning complex problems into simple, beautiful, and intuitive designs —
+              always striving to deliver clean code and pixel-perfect UI in every project.
+            </p>
+
+            {/* Info grid */}
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {[
+                { label: 'Name', value: 'Salma Akther Mim' },
+                { label: 'Location', value: 'Dhaka, Bangladesh' },
+                { label: 'Email', value: 'salmaakthermim112@gmail.com' },
+                { label: 'Status', value: 'Open to Work ✅' },
+              ].map((info) => (
+                <div key={info.label} className="glow-card p-3">
+                  <p className="text-xs text-sky-400 uppercase tracking-wider">{info.label}</p>
+                  <p className="text-white text-sm font-medium mt-1 truncate">{info.value}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Tech badges */}
+            <div className="flex flex-wrap gap-2">
+              {techBadges.map((t) => (
+                <span
+                  key={t.label}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-white/10 bg-white/5 text-white"
+                  style={{ color: t.color, borderColor: `${t.color}40` }}
+                >
+                  {t.icon} {t.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

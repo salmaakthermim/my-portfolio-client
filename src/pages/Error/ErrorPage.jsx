@@ -1,44 +1,43 @@
 import React from 'react';
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const ErrorPage = () => {
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-t from-indigo-950 from-10% via-sky-300 via-50% to-teal-950">
-          <motion.h1
-            className="text-6xl font-bold text-teal-950"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+  return (
+    <div className="min-h-screen bg-[#050d1a] flex items-center justify-center px-6 relative overflow-hidden">
+      {/* bg glows */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-[10rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-purple-600 leading-none">
+            404
+          </h1>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <h2 className="text-2xl font-bold text-white mb-3">Page Not Found</h2>
+          <p className="text-gray-400 mb-8 max-w-sm mx-auto">
+            Oops! The page you're looking for doesn't exist or has been moved.
+          </p>
+          <Link
+            to="/"
+            className="btn-gradient px-8 py-3 text-sm inline-block"
           >
-            Error...!!
-          </motion.h1>
-    
-          <motion.p
-            className="mt-4 text-lg text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6, ease: "easeInOut" }}
-          >
-            Oops! The page you're looking for doesn't exist.
-          </motion.p>
-    
-          <motion.div
-            className="mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6, ease: "easeInOut" }}
-          >
-            <Link
-              to="/"
-              className="px-6 py-3 bg-sky-900 text-white rounded-lg shadow-md hover:bg-sky-950 focus:outline-none"
-            >
-              Back to Home
-            </Link>
-          </motion.div>
-        </div>
-      );
-    };
-    
+            ← Go Back Home
+          </Link>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
 
 export default ErrorPage;
