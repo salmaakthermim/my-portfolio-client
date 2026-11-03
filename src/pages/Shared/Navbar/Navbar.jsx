@@ -17,15 +17,14 @@ const Navbar = ({ handleThemeToggle: _handleThemeToggle, isDark: _isDark }) => {
     { label: 'About', href: '#about-me' },
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Education', href: '#education' },
     { label: 'Contact', href: '#contact' },
   ];
 
   return (
     <motion.nav
       className={`sticky top-0 z-50 transition-all duration-300 ${scrolled
-          ? 'bg-[#050d1a]/90 backdrop-blur-md shadow-lg shadow-sky-500/10'
-          : 'bg-transparent'
+        ? 'bg-[#050d1a]/90 backdrop-blur-md shadow-lg shadow-sky-500/10'
+        : 'bg-transparent'
         }`}
       initial={{ y: -80 }}
       animate={{ y: 0 }}
