@@ -14,7 +14,7 @@ const ErrorPage = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-[10rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-purple-600 leading-none">
+          <h1 className="text-[6rem] sm:text-[8rem] md:text-[10rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-purple-600 leading-none">
             404
           </h1>
         </motion.div>

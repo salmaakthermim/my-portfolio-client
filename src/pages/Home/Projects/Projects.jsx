@@ -3,33 +3,39 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
+const API_BASE = 'https://my-portfolio-server-umber.vercel.app';
+
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/projects')
+    fetch(`${API_BASE}/projects`)
       .then(res => res.json())
       .then(data => {
         setProjects(data || []);
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
-        setLoading(false);
+        console.error('Remote fetch error, trying local fallback:', err);
+        fetch('http://localhost:5000/projects')
+          .then(res => res.json())
+          .then(data => setProjects(data || []))
+          .catch(() => {})
+          .finally(() => setLoading(false));
       });
   }, []);
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden" id="projects">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden" id="projects">
       {/* bg decorations */}
-      <div className="absolute top-20 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-sky-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-20 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-sky-500/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
         {/* Title */}
-        <div className="text-center mb-16">
-          <p className="text-sky-400 uppercase tracking-widest text-sm font-semibold mb-2">My Work</p>
+        <div className="text-center mb-12 sm:mb-16">
+          <p className="text-sky-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">My Work</p>
           <h2 className="section-title">Featured Projects</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-sky-500 to-purple-600 rounded mx-auto mt-3" />
           <p className="section-subtitle mt-4">
@@ -39,11 +45,11 @@ const Projects = () => {
 
         {/* Loading skeleton */}
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[1, 2, 3].map(i => (
               <div key={i} className="glow-card overflow-hidden animate-pulse">
-                <div className="h-48 bg-white/5" />
-                <div className="p-5 space-y-3">
+                <div className="h-44 sm:h-48 bg-white/5" />
+                <div className="p-4 sm:p-5 space-y-3">
                   <div className="h-4 bg-white/5 rounded w-3/4" />
                   <div className="h-3 bg-white/5 rounded w-full" />
                   <div className="h-8 bg-white/5 rounded" />
@@ -55,7 +61,7 @@ const Projects = () => {
 
         {/* Projects grid */}
         {!loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {Array.isArray(projects) && projects.map((project, index) => (
               <motion.div
                 key={project?._id}

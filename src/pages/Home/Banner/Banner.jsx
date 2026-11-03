@@ -13,7 +13,7 @@ const Banner = () => {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const count = 120;
+    const count = window.innerWidth < 768 ? 40 : 85;
 
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -72,28 +72,28 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050d1a]">
+    <div className="relative min-h-[calc(100vh-70px)] flex items-center justify-center overflow-hidden bg-[#050d1a] py-16 sm:py-20 md:py-24">
       {/* Particle Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
 
       {/* Radial glow bg */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-sky-500 opacity-10 blur-[120px]" />
-        <div className="absolute top-2/3 left-1/4 w-[300px] h-[300px] rounded-full bg-purple-600 opacity-10 blur-[100px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] md:w-[600px] h-[350px] sm:h-[500px] md:h-[600px] rounded-full bg-sky-500 opacity-10 blur-[120px]" />
+        <div className="absolute top-2/3 left-1/4 w-[250px] sm:w-[300px] h-[250px] sm:h-[300px] rounded-full bg-purple-600 opacity-10 blur-[100px]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 px-6 max-w-6xl mx-auto w-full">
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-14 px-4 sm:px-6 max-w-6xl mx-auto w-full">
 
         {/* Left text */}
         <motion.div
-          className="text-center md:text-left"
+          className="text-center md:text-left flex-1"
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.p
-            className="text-sky-400 font-semibold tracking-widest text-sm uppercase mb-3"
+            className="text-sky-400 font-semibold tracking-widest text-xs sm:text-sm uppercase mb-3"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -101,14 +101,14 @@ const Banner = () => {
             👋 Welcome to my portfolio
           </motion.p>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
             Hi, I'm{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-purple-500">
               Salma Akther Mim
             </span>
           </h1>
 
-          <h2 className="text-xl md:text-2xl font-bold mt-4 text-gray-300">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mt-3 text-gray-300 min-h-[32px] sm:min-h-[36px]">
             <Typewriter
               words={['Front-End Developer', 'React Specialist', 'UI/UX Enthusiast', 'Problem Solver']}
               loop={Infinity}
@@ -120,27 +120,27 @@ const Banner = () => {
             />
           </h2>
 
-          <p className="mt-5 text-gray-400 max-w-md leading-relaxed">
+          <p className="mt-4 sm:mt-5 text-gray-400 max-w-md mx-auto md:mx-0 text-sm sm:text-base leading-relaxed">
             I'm Salma Akther Mim — a passionate Front-End Developer who crafts beautiful,
             responsive web experiences with React, Tailwind CSS & modern animations.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center md:justify-start w-full sm:w-auto">
             <motion.a
               href="https://drive.google.com/file/d/1QwBDxYmxG-LZRr8oy7w6khI58Wtust_K/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full font-bold text-white bg-gradient-to-r from-sky-500 to-purple-600 shadow-lg shadow-sky-500/30 hover:scale-105 transition-transform"
-              whileHover={{ scale: 1.07 }}
-              whileTap={{ scale: 0.97 }}
+              className="px-6 py-3 rounded-full font-bold text-white bg-gradient-to-r from-sky-500 to-purple-600 shadow-lg shadow-sky-500/30 hover:scale-105 transition-transform text-sm sm:text-base text-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               📄 Download Resume
             </motion.a>
             <motion.a
               href="#projects"
-              className="px-6 py-3 rounded-full font-bold text-sky-400 border-2 border-sky-400 hover:bg-sky-400 hover:text-white transition-all"
-              whileHover={{ scale: 1.07 }}
-              whileTap={{ scale: 0.97 }}
+              className="px-6 py-3 rounded-full font-bold text-sky-400 border-2 border-sky-400 hover:bg-sky-400 hover:text-white transition-all text-sm sm:text-base text-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               🚀 View Projects
             </motion.a>
@@ -148,7 +148,7 @@ const Banner = () => {
 
           {/* Stats */}
           <motion.div
-            className="mt-10 flex gap-8 justify-center md:justify-start"
+            className="mt-8 sm:mt-10 grid grid-cols-3 gap-3 sm:gap-6 max-w-sm mx-auto md:mx-0"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -158,9 +158,9 @@ const Banner = () => {
               { label: 'Technologies', value: '12+' },
               { label: 'Experience', value: '1+ yr' },
             ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl font-extrabold text-sky-400">{stat.value}</p>
-                <p className="text-xs text-gray-400 mt-1">{stat.label}</p>
+              <div key={stat.label} className="text-center glow-card py-2.5 px-1 sm:px-3">
+                <p className="text-xl sm:text-2xl font-extrabold text-sky-400">{stat.value}</p>
+                <p className="text-[11px] sm:text-xs text-gray-400 mt-0.5">{stat.label}</p>
               </div>
             ))}
           </motion.div>
@@ -168,14 +168,14 @@ const Banner = () => {
 
         {/* Right image */}
         <motion.div
-          className="relative flex-shrink-0"
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="relative flex-shrink-0 w-[240px] h-[300px] sm:w-[270px] sm:h-[340px] md:w-[300px] md:h-[380px] my-4 md:my-0"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.3 }}
         >
           {/* Outer rotating gradient ring */}
           <motion.div
-            className="absolute rounded-2xl z-0"
+            className="absolute rounded-2xl z-0 pointer-events-none"
             style={{
               inset: '-4px',
               background: 'linear-gradient(135deg, #38bdf8, #a855f7, #38bdf8)',
@@ -193,36 +193,36 @@ const Banner = () => {
 
           {/* Spinning dashed border */}
           <motion.div
-            className="absolute rounded-2xl border-2 border-dashed border-sky-400/30 z-0"
-            style={{ inset: '-14px' }}
+            className="absolute rounded-2xl border-2 border-dashed border-sky-400/30 z-0 pointer-events-none"
+            style={{ inset: '-10px' }}
             animate={{ rotate: 360 }}
             transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
           />
 
           {/* Corner glow dots */}
           {[
-            { top: '-8px', left: '-8px' },
-            { top: '-8px', right: '-8px' },
-            { bottom: '-8px', left: '-8px' },
-            { bottom: '-8px', right: '-8px' },
+            { top: '-6px', left: '-6px' },
+            { top: '-6px', right: '-6px' },
+            { bottom: '-6px', left: '-6px' },
+            { bottom: '-6px', right: '-6px' },
           ].map((pos, i) => (
             <motion.div
               key={i}
-              className="absolute w-4 h-4 rounded-full bg-sky-400 z-20"
+              className="absolute w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-sky-400 z-20 pointer-events-none"
               style={pos}
-              animate={{ scale: [1, 1.6, 1], opacity: [0.8, 1, 0.8] }}
+              animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
             />
           ))}
 
           {/* Glow behind */}
           <motion.div
-            className="absolute inset-0 rounded-2xl z-0"
+            className="absolute inset-0 rounded-2xl z-0 pointer-events-none"
             animate={{
               boxShadow: [
-                '0 0 30px #38bdf850, 0 0 60px #a855f730',
-                '0 0 50px #38bdf870, 0 0 80px #a855f750',
-                '0 0 30px #38bdf850, 0 0 60px #a855f730',
+                '0 0 25px #38bdf850, 0 0 50px #a855f730',
+                '0 0 45px #38bdf870, 0 0 70px #a855f750',
+                '0 0 25px #38bdf850, 0 0 50px #a855f730',
               ],
             }}
             transition={{ duration: 2.5, repeat: Infinity }}
@@ -232,9 +232,8 @@ const Banner = () => {
           <motion.img
             src="/Mim.png"
             alt="Salma Akther Mim"
-            className="relative z-10 rounded-2xl object-cover object-top border-2 border-sky-500/40 shadow-2xl"
-            style={{ width: '300px', height: '380px' }}
-            animate={{ y: [0, -12, 0] }}
+            className="relative z-10 w-full h-full rounded-2xl object-cover object-top border-2 border-sky-500/40 shadow-2xl"
+            animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           />
 
@@ -248,7 +247,7 @@ const Banner = () => {
 
           {/* Top badge */}
           <motion.div
-            className="absolute -top-4 left-4 z-20 bg-[#0a1628] border border-sky-500/50 rounded-full px-3 py-1.5 text-xs text-white flex items-center gap-2 shadow-lg"
+            className="absolute -top-3.5 left-2 sm:left-4 z-20 bg-[#0a1628]/95 backdrop-blur-md border border-sky-500/50 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs text-white flex items-center gap-1.5 sm:gap-2 shadow-lg"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: [0, -4, 0] }}
             transition={{ opacity: { delay: 1 }, y: { duration: 3, repeat: Infinity } }}
@@ -259,9 +258,9 @@ const Banner = () => {
 
           {/* Bottom badge */}
           <motion.div
-            className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-r from-sky-500 to-purple-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg whitespace-nowrap"
+            className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-r from-sky-500 to-purple-600 text-white text-[11px] sm:text-xs font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg whitespace-nowrap"
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: [0, -5, 0] }}
+            animate={{ opacity: 1, y: [0, -4, 0] }}
             transition={{ opacity: { delay: 1.2 }, y: { duration: 3.5, repeat: Infinity } }}
           >
             💻 Front-End Developer

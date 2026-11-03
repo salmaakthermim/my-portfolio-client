@@ -16,11 +16,22 @@ const Footer = () => {
     e.preventDefault();
     setSending(true);
     try {
-      const response = await fetch("http://localhost:5000/userClient", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const serverUrl = 'https://my-portfolio-server-umber.vercel.app/userClient';
+      let response;
+      try {
+        response = await fetch(serverUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+      } catch {
+        // Fallback to localhost if local
+        response = await fetch("http://localhost:5000/userClient", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+      }
       const data = await response.json();
       if (data.insertedId) {
         Swal.fire({ icon: "success", title: "Message Sent! 🎉", text: "I'll get back to you soon.", background: '#0a1628', color: '#e2e8f0' });
@@ -40,18 +51,18 @@ const Footer = () => {
   return (
     <footer className="relative overflow-hidden bg-[#030b17]" id="contact">
       {/* bg glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-sky-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[350px] sm:w-[600px] h-64 bg-sky-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Contact section */}
-      <div className="max-w-6xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
-          <p className="text-sky-400 uppercase tracking-widest text-sm font-semibold mb-2">Get In Touch</p>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24">
+        <div className="text-center mb-12 sm:mb-16">
+          <p className="text-sky-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">Get In Touch</p>
           <h2 className="section-title">Contact Me</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-sky-500 to-purple-600 rounded mx-auto mt-3" />
           <p className="section-subtitle mt-4">Have a project in mind? Let's work together!</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
           {/* Left info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -105,7 +116,7 @@ const Footer = () => {
 
           {/* Contact form */}
           <motion.div
-            className="glow-card p-7"
+            className="glow-card p-5 sm:p-7"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -160,8 +171,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/5 py-6 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="border-t border-white/5 py-6 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-2">
             <img
               className="w-8 h-8 rounded-full border border-sky-500/40 object-cover object-top"

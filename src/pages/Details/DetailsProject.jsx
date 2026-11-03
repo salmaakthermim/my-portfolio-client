@@ -9,24 +9,29 @@ const DetailsProject = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/project_details/${id}`)
+    const serverUrl = `https://my-portfolio-server-umber.vercel.app/project_details/${id}`;
+    fetch(serverUrl)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
-        setLoading(false);
+        console.error('Remote fetch error, trying local fallback:', error);
+        fetch(`http://localhost:5000/project_details/${id}`)
+          .then((res) => res.json())
+          .then((data) => setData(data))
+          .catch(() => {})
+          .finally(() => setLoading(false));
       });
   }, [id]);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#050d1a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#050d1a] flex items-center justify-center p-4">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-sky-500/30 border-t-sky-500 rounded-full animate-spin" />
-          <p className="text-gray-400">Loading project...</p>
+          <p className="text-gray-400 text-sm">Loading project...</p>
         </div>
       </div>
     );
@@ -34,7 +39,7 @@ const DetailsProject = () => {
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-[#050d1a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#050d1a] flex items-center justify-center p-4">
         <div className="text-center">
           <p className="text-gray-400 text-lg mb-4">Project not found.</p>
           <Link to="/" className="btn-gradient px-6 py-3 text-sm">Go Home</Link>
@@ -46,10 +51,10 @@ const DetailsProject = () => {
   const { project_name, project_image, main_technology_stack, description, live_project_link, github_repository_link } = data;
 
   return (
-    <div className="min-h-screen bg-[#050d1a] py-12 px-6 relative overflow-hidden">
+    <div className="min-h-screen bg-[#050d1a] py-8 sm:py-12 px-4 sm:px-6 relative overflow-hidden">
       {/* bg glows */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-sky-500/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-sky-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Back button */}
@@ -90,7 +95,7 @@ const DetailsProject = () => {
           <img
             src={project_image}
             alt={project_name}
-            className="w-full h-64 md:h-80 object-cover"
+            className="w-full h-52 sm:h-64 md:h-80 object-cover"
           />
         </motion.div>
 
