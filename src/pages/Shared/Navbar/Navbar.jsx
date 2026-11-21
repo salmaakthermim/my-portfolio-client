@@ -135,7 +135,7 @@ const Navbar = ({ handleThemeToggle: _handleThemeToggle, isDark: _isDark }) => {
             {/* Mobile Actions: Resume & Socials */}
             <div className="mt-5 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
               <a
-                href="https://drive.google.com/drive/home?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto"
+                href="https://drive.google.com/file/d/1qXEM2lFgcWuoZLiuGHTe__HKOBXTo_6K/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full text-center btn-gradient text-sm py-2.5"
